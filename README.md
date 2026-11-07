@@ -1,22 +1,36 @@
-# Entrega N°1 - Programación Backend III
+# AdoptMe Project - Entrega Final Backend 🚀
 
-Proyecto **Adoptme** con módulo de Mocking y persistencia de datos ficticios.
+Este proyecto corresponde al backend integrador final de la cursada, incorporando arquitecturas robustas en capas, generación modular de mocks, documentación OpenAPI interactiva y empaquetamiento contenedorizado mediante Docker.
 
-## Requerimientos Implementados
-- **Router base:** `/api/mocks`
-- **GET `/api/mocks/mockingpets`:** Migración exitosa del endpoint de simulación de mascotas.
-- **GET `/api/mocks/mockingusers`:** Generación en tiempo real de 50 usuarios con contraseñas encriptadas (`coder123`), roles variables (`user`/`admin`) y arreglos de mascotas vacíos.
-- **POST `/api/mocks/generateData`:** Endpoint que recibe parámetros numéricos de usuarios y mascotas, genera la data con Faker.js e impacta directamente la base de datos de MongoDB.
+## 🔗 Enlace Público a la Imagen de DockerHub
+Puedes acceder y descargar la imagen oficial compilada del proyecto en el siguiente enlace:
+👉 *https://hub.docker.com/repositories/kejoraku*
 
-## Pasos para ejecutar el proyecto
-1. Clonar el repositorio.
-2. Instalar las dependencias con `npm install`.
-3. Configurar el archivo `.env` en la raíz con las variables `PORT` y `MONGO_URL`.
-4. Iniciar el servidor mediante el comando `npm start`.
+---
 
-## Evidencia de Funcionamiento (Pruebas en Postman)
-### 1. Test GET /mockingusers
-![Prueba GET](./captura_get.png)
+## 🛠️ Instrucciones para Construcción y Ejecución con Docker
 
-### 2. Test POST /generateData
-![Prueba POST](./captura_post.png)
+### 1. Construir la Imagen de Forma Local
+Si deseas compilar la imagen de manera local en tu máquina, posiciónate en la raíz del proyecto donde reside el `Dockerfile` y ejecuta:
+```bash
+docker build -t tu_docker_id/adoptme-project:1.0.0 .
+```
+
+### 2. Ejecutar el Contenedor
+Levanta la instancia de la aplicación mapeando el puerto interno al host e inyectando tu URI de conexión real a MongoDB como variable de entorno:
+```bash
+docker run -d -p 8080:8080 -e PORT=8080 -e MONGO_URL="tu_uri_de_mongodb" --name adoptme_instance tu_docker_id/adoptme-project:1.0.0
+```
+
+### 3. Detener el Contenedor
+```bash
+docker stop adoptme_instance
+```
+
+---
+
+## 🧪 Comandos de Testing Automatizado
+Para ejecutar el banco de pruebas funcionales desarrollado sobre el ruteador de adopciones con Mocha y Supertest, corre el comando:
+```bash
+npm test
+```

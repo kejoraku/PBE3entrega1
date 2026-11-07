@@ -1,0 +1,52 @@
+paths:
+  /api/users:
+    get:
+      summary: Recupera la lista completa de usuarios persistidos.
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Listado de usuarios obtenido exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  payload:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/User'
+        '500':
+          description: Fallo interno del servidor.
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: string
+          example: 615c3b52f6d2b34a1c8d4512
+        first_name:
+          type: string
+          example: Juan
+        last_name:
+          type: string
+          example: Pérez
+        email:
+          type: string
+          example: juan.perez@coder.com
+        password:
+          type: string
+          example: $2b$10$xyz... (Contraseña coder123 hasheada)
+        role:
+          type: string
+          enum: [user, admin]
+          example: user
+        pets:
+          type: array
+          items:
+            type: string
+          example: []
